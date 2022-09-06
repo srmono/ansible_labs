@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+  - name: A command to run in diff mode
+    file:
+        path: /tmp/test197
+        state: touch

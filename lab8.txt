@@ -1,0 +1,10 @@
+[ec2-user@ip-172-31-86-172 ~]$ cat lab8.yml
+---
+- name: date and time demo
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: date and time
+      ansible.builtin.debug:
+        msg: "{{ lookup('pipe', 'date +%Y-%m-%d@$H:%M:%S') }}"
+[ec2-user@ip-172-31-86-172 ~]$

@@ -1,0 +1,15 @@
+[ec2-user@ip-172-31-27-248 ~]$ cat lab14.yml
+- name: cron module demo
+  hosts: all
+  tasks:
+   - name: "example cronjob"
+     ansible.builtin.cron:
+      name: "test"
+      state: present
+      minute: "*/2"
+      hour: "*"
+      day: "*"
+      month: "*"
+      weekday: "*"
+      job: 'logger "ansible-pilot"'
+      

@@ -1,0 +1,8 @@
+[ec2-user@ip-172-31-86-172 ~]$ cat lab7.yml
+- name: date and time demo
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: date and time
+      ansible.builtin.debug:
+        var: ansible_date_time

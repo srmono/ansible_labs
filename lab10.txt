@@ -1,0 +1,19 @@
+---
+  - name:  Reboot
+    hosts: all
+    tasks:
+      - name: Reboot the server
+        reboot:
+          reboot_timeout: 300
+
+
+        tags: reboot
+        become: yes
+        become_user: root
+        shell: "sleep 5 && reboot"
+        async: 1
+        poll: 5
+      - name: Check the Uptime of the servers
+        shell: "uptime"
+        register: Uptime
+      - debug: var=Uptime

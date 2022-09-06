@@ -1,0 +1,29 @@
+open firewall ports in debian like systems 
+
+
+ubuntu@ip-172-31-19-136:~$ cat lab22.yml
+---
+- name: ufw module demo
+  hosts: all
+  become: true
+  tasks:
+    - name: nginx installed
+      ansible.builtin.apt:
+        name: "nginx"
+        state: "present"
+        update_cache: true
+    - name: ufw enabled
+      ufw:
+        state: "enabled"
+        policy: "deny"
+        logging: "on"
+    - name: ufw rules
+      ufw:
+        rule: "allow"
+        port: "{{ item }}"
+        proto: "tcp"
+      with_items:
+        - "22"
+        - "80"
+        - "443"
+ubuntu@ip-172-31-19-136:~$

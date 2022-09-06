@@ -1,0 +1,29 @@
+---
+- name: configure apche web server
+  hosts: all
+  tasks: 
+    - name: Install Apache Packages
+      yum: 
+        name: httpd
+        state: present
+    - name: Start apache service
+      service:
+        name: httpd
+        state: started
+    - name: Add Firewall Rules
+      firewalld:
+        port: 80/tcp
+        permanent: true
+        state: enabled
+    - name: Reload Firewall configuratio for the new Rules
+      systemd:
+        name: firewalld
+        state: reloaded 
+    - name: copy web index file to apache directory
+      copy:
+        src: files/index.html
+        dest: /var/www/html/
+    - name: Restart Apache Service
+      service:
+        name: httpd
+        state: restarted 

@@ -1,0 +1,10 @@
+---
+- name: Ansible debug module in action
+  hosts: all
+  vars:
+    greetings: Hello World!
+    site: Cloud
+  tasks:
+    - name: Print the value of a variable
+      debug:
+        msg: "{{ greetings }}, Welcome to {{ site }}."

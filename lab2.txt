@@ -1,0 +1,25 @@
+[ec2-user@ip-172-31-84-92 ~]$
+[ec2-user@ip-172-31-84-92 ~]$ cat lab2.yml
+---
+- name: Ansible debug module in action
+  hosts: all
+  tasks:
+          - name: Print a simple statement
+            debug:
+              msg: "Hello World! Welcome"
+[ec2-user@ip-172-31-84-92 ~]$
+
+[ec2-user@ip-172-31-84-92 ~]$
+[ec2-user@ip-172-31-84-92 ~]$ cat lab_2.yml
+---
+- name: Ansible debug module in action
+  hosts: all
+  vars:
+        greetings: Hello World!
+          site: Cloud
+  tasks:
+          - name: Print the value of a variable
+            debug:
+              msg: "{{ greetings }}, Welcome to {{ site }}."
+[ec2-user@ip-172-31-84-92 ~]$
+[ec2-user@ip-172-31-84-92 ~]$

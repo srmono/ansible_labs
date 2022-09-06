@@ -1,0 +1,18 @@
+[ec2-user@ip-172-31-27-248 ~]$ cat lab13.yml
+
+- name: service module demo
+  hosts: all
+  become: true
+  vars:
+    services_on_boot:
+      - "chronyd.service"
+  tasks:
+    - name: populate service facts
+      ansible.builtin.service_facts:
+    - name: enable services on boot
+      ansible.builtin.service:
+        name: "{{ item }}"
+        enabled: true
+        state: started
+      when: "item in services"
+      with_items: '{{ services_on_boot }}'

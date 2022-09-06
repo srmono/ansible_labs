@@ -1,0 +1,13 @@
+[ec2-user@ip-172-31-91-65 ~]$ cat lab15.yml
+---
+- name: template module demo
+  hosts: all
+  become: true
+  tasks:
+    - name: generate /etc/myhosts file
+      ansible.builtin.template:
+        src: hosts.j2
+        dest: /etc/myhosts
+        owner: root
+        group: root
+        mode: '0644'

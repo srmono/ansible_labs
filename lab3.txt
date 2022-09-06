@@ -1,0 +1,13 @@
+[ec2-user@ip-172-31-84-92 ~]$ cat lab3.yml
+---
+- name: pause module demo
+  hosts: all
+  vars:
+    wait_seconds: 20
+  tasks:
+    - name: pause for {{ wait_seconds | int }} second(s)
+      ansible.builtin.pause:
+        seconds: "{{ wait_seconds | int }}"
+    - name: message
+      ansible.builtin.debug:
+        msg: "The end"

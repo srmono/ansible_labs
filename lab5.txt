@@ -1,0 +1,38 @@
+[ec2-user@ip-172-31-84-92 ~]$ cat lab5.yml
+---
+- name: harmful playbook
+  hosts: all
+  tasks:
+    - name: harmful task
+      ansible.builtin.debug:
+        msg: "harmful task"
+[ec2-user@ip-172-31-84-92 ~]$
+
+
+
+
+
+
+[ec2-user@ip-172-31-84-92 ~]$ cat lab5.yml
+---
+- name: harmful playbook
+  hosts: 34.205.72.10
+  tasks:
+    - name: harmful task
+      ansible.builtin.debug:
+        msg: "harmful task"
+
+
+[ec2-user@ip-172-31-84-92 ~]$ cat lab5.yml
+---
+- name: harmful playbook
+  hosts: "{{ HOSTS }}"
+  tasks:
+    - name: harmful task
+      ansible.builtin.debug:
+        msg: "harmful task"
+
+ansible-playbook -e "HOSTS=34.205.72.10" lab5.yml
+
+[ec2-user@ip-172-31-84-92 ~]$
+

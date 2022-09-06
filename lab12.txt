@@ -1,0 +1,27 @@
+
+
+[ec2-user@ip-172-31-84-92 ~]$ mkdir -p /playbooks/files/fooapp/
+[ec2-user@ip-172-31-84-92 ~]$ cd /playbooks/files/fooapp/
+[ec2-user@ip-172-31-84-92 ~]$ touch xyz{1..5}
+[ec2-user@ip-172-31-84-92 ~]$
+[ec2-user@ip-172-31-84-92 ~]$
+[ec2-user@ip-172-31-84-92 ~]$ cat lab12.yml
+- name: copy module demo
+  hosts: all
+  become: yes
+  tasks:
+   - name: Copy each file over that matches the given pattern
+     copy:
+        src: "{{ item }}"
+        dest: "/etc/fooapp/"
+        owner: "root"
+        mode: 0600
+     with_fileglob:
+       - "/playbooks/files/fooapp/*"
+
+       
+[ec2-user@ip-172-31-84-92 ~]$
+[ec2-user@ip-172-31-84-92 ~]$
+[ec2-user@ip-172-31-84-92 ~]$
+[ec2-user@ip-172-31-84-92 ~]$
+

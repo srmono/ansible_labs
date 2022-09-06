@@ -1,0 +1,10 @@
+[ec2-user@ip-172-31-91-65 ~]$ cat lab17.yml
+---
+- name: read file on host
+  hosts: all
+  vars:
+   contents: "{{ lookup('file','example.txt') }}"
+  tasks:
+   - name: print file
+     ansible.builtin.debug:
+      msg: "the content of file is {{ contents }}"

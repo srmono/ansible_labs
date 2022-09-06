@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks:
+  - name: A command to run in check mode
+    command: mkdir /tmp/test

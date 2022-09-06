@@ -1,0 +1,13 @@
+--- 
+plugin: gcp_compute
+projects: 
+  - venkata-practice
+auth_kind: serviceaccount
+service_account_file: service-account.json
+keyed_groups:
+  - key: labels
+    prefix: label 
+  - key: zone 
+    prefix: zone 
+groups: 
+  remote: "'java' in (lables|list)"

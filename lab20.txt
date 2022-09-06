@@ -1,0 +1,21 @@
+ubuntu@ip-172-31-19-136:~$ cat lab21.yml
+---
+- name: delete file(s) in dir demo
+  hosts: all
+  become: yes
+  vars:
+    mypath: "/home/cloudthatgcpteam3"
+  tasks:
+    - name: collect files
+      ansible.builtin.find:
+        paths: "{{ mypath }}"
+        hidden: true
+        recurse: true
+        file_type: any
+      register: collected_files
+    - name: remove collected files
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ collected_files.files }}"
+ubuntu@ip-172-31-19-136:~$

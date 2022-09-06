@@ -1,0 +1,30 @@
+[ec2-user@ip-172-31-87-150 ~]$ cat requirements.yml
+---
+collections:
+  - name: community.general
+    source: https://galaxy.ansible.com
+
+
+ansible-galaxy collection install -r requirements.yml
+
+
+[ec2-user@ip-172-31-87-150 ~]$
+[ec2-user@ip-172-31-87-150 ~]$
+[ec2-user@ip-172-31-87-150 ~]$ cat collection.yml
+---
+- name: modprobe module demo
+  hosts: localhost
+  become: true
+  vars:
+    module_name: "dummy"
+    ansible_connection: local
+  tasks:
+    - name: load the module
+      community.general.modprobe:
+        name: "{{ module_name }}"
+        state: present
+
+[ec2-user@ip-172-31-87-150 ~]$
+
+
+

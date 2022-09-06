@@ -1,0 +1,17 @@
+- name: git module demo
+  hosts: all
+  vars:
+    repo: "https://github.com/wsargent/docker-cheat-sheet.git"
+    dest: "/tmp/cheatsheet"
+  tasks:
+    - name: ensure git pkg installed
+      ansible.builtin.yum:
+        name: git
+        state: present
+        update_cache: true
+      become: true
+    - name: checkout git repo
+      ansible.builtin.git:
+        repo: "{{ repo }}"
+        dest: "{{ dest }}"
+        clone: yes

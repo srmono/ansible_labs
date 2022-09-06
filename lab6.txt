@@ -1,0 +1,20 @@
+[ec2-user@ip-172-31-86-172 ~]$ cat lab6.yml
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  vars:
+    apache2_vhosts:
+      - name: "stage.example.org"
+        docroot: "/var/www/stage1"
+      - name: "stage2.example.org"
+        docroot: "/var/www/stage2"
+        letsencrypt: no
+      - name: "www.example.org"
+        docroot: "/var/www/www"
+        letsencrypt: yes
+  tasks:
+    - debug:
+        msg: "{{ apache2_vhosts | selectattr('letsencrypt', 'defined') | selectattr('letsencrypt', 'equalto', True) | list }}"
+        
+[ec2-user@ip-172-31-86-172 ~]$
